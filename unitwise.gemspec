@@ -24,7 +24,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency               'signed_multiset', '~> 0.2'
   gem.add_dependency               'memoizable',      '~> 0.4'
   gem.add_dependency               'parslet',         '~> 1.5'
-
+  gem.add_dependency               'rdl'
+  
   gem.add_development_dependency   'nokogiri',        '~> 1.5'
   gem.add_development_dependency   'pry',             '~> 0.9'
   gem.add_development_dependency   'minitest',        '~> 5.0'

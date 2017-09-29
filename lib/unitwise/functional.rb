@@ -1,3 +1,6 @@
+require 'rdl'
+require 'types/core'
+
 module Unitwise
   # Functional is an alterative function-based scale for atoms with a
   # non-linear (or non-zero y-intercept) scale. This is most commonly used for
@@ -6,26 +9,32 @@ module Unitwise
   class Functional < Scale
     extend Math
 
+    type '(Float x) -> Float res {{ x == from_cel(res) }}', verify: :later
     def self.to_cel(x)
       x - 273.15
     end
 
+    type '(Float x) -> Float res {{ x == to_cel(res) }}', verify: :later
     def self.from_cel(x)
       x + 273.15
     end
 
+    type '(Float x) -> Float res {{ res == 9.0 * x / 5.0 - 459.67 }}', verify: :later
     def self.to_degf(x)
       9.0 * x / 5.0 - 459.67
     end
 
+    type '(Float x) -> Float res {{ x == to_degf(res) }}', verify: :later
     def self.from_degf(x)
       5.0 / 9.0 * (x + 459.67)
     end
 
+    type '(Float x) -> Float res {{ from_degre(res) == x }}', verify: :later
     def self.to_degre(x)
       4.0 * x / 5.0 - 218.52
     end
 
+    type '(Float x) -> Float res {{ x == to_degre(res) }}', verify: :later
     def self.from_degre(x)
       5.0 / 4.0 * (x + 218.52)
     end
